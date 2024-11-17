@@ -18,7 +18,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// </summary>
         /// <param name="sale">The sale to create</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The created user</returns>
+        /// <returns>The created sale</returns>
         Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default);
 
         /// <summary>

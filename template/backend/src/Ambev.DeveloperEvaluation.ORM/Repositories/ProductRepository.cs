@@ -58,6 +58,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                 return false;
             }
 
+            productToUpdate.Name = product.Name;
+            productToUpdate.Price = product.Price;
+            productToUpdate.Description = product.Description;
+            productToUpdate.Stock = product.Stock;
+            productToUpdate.Status = product.Status;
             productToUpdate.LastUpdatedAt = DateTime.UtcNow;
 
             _context.Products.Update(productToUpdate);

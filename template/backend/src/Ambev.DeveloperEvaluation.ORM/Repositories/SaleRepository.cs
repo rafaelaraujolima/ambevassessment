@@ -70,6 +70,9 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                 return false;
             }
 
+            saleToUpdate.TotalAmount = sale.TotalAmount;
+            saleToUpdate.IsCancelled = sale.IsCancelled;
+
             _context.Sales.Update(saleToUpdate);
             await _context.SaveChangesAsync(cancellationToken);
             return true;
