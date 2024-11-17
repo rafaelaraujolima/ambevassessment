@@ -66,7 +66,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         }
 
         /// <summary>
-        /// Performs validation of the user entity using the UserValidator rules.
+        /// Performs validation of the sale entity using the SaleValidator rules.
         /// </summary>
         /// <returns>
         /// A <see cref="ValidationResultDetail"/> containing:
@@ -75,11 +75,10 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// </returns>
         /// <remarks>
         /// <listheader>The validation includes checking:</listheader>
-        /// <list type="bullet">Username format and length</list>
-        /// <list type="bullet">Email format</list>
-        /// <list type="bullet">Phone number format</list>
-        /// <list type="bullet">Password complexity requirements</list>
-        /// <list type="bullet">Role validity</list>
+        /// <list type="bullet">SaleNumber format and length</list>
+        /// <list type="bullet">CustomerName length</list>
+        /// <list type="bullet">TotalAmount value</list>
+        /// <list type="bullet">BranchName length</list>
         /// 
         /// </remarks>
         public ValidationResultDetail Validate()

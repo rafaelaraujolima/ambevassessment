@@ -79,7 +79,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         public bool IsCancelled { get; set; }
 
         /// <summary>
-        /// Performs validation of the user entity using the UserValidator rules.
+        /// Performs validation of the sale item entity using the SaleItemValidator rules.
         /// </summary>
         /// <returns>
         /// A <see cref="ValidationResultDetail"/> containing:
@@ -88,11 +88,12 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// </returns>
         /// <remarks>
         /// <listheader>The validation includes checking:</listheader>
-        /// <list type="bullet">Username format and length</list>
-        /// <list type="bullet">Email format</list>
-        /// <list type="bullet">Phone number format</list>
-        /// <list type="bullet">Password complexity requirements</list>
-        /// <list type="bullet">Role validity</list>
+        /// <list type="bullet">SaleId length</list>
+        /// <list type="bullet">ProductName length</list>
+        /// <list type="bullet">UnitPrice value</list>
+        /// <list type="bullet">Quantity value</list>
+        /// <list type="bullet">Discount validity</list>
+        /// <list type="bullet">TotalAmount value</list>
         /// 
         /// </remarks>
         public ValidationResultDetail Validate()
