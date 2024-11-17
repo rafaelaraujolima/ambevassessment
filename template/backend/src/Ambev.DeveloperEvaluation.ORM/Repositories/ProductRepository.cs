@@ -50,12 +50,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <param name="product">The product to update</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the product was updated, false if not found</returns>
-        public async Task<bool> UpdateAsync(Product product, CancellationToken cancellationToken = default)
+        public async Task<Product?> UpdateAsync(Product product, CancellationToken cancellationToken = default)
         {
             var productToUpdate = await GetByIdAsync(product.Id, cancellationToken);
             if (productToUpdate == null)
             {
-                return false;
+                return null;
             }
 
             productToUpdate.Name = product.Name;
@@ -67,7 +67,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
             _context.Products.Update(productToUpdate);
             await _context.SaveChangesAsync(cancellationToken);
-            return true;
+            return productToUpdate;
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// </summary>
         /// <param name="product">The product to create</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The created user</returns>
+        /// <returns>The created product</returns>
         Task<Product> CreateAsync(Product product, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// </summary>
         /// <param name="product">The product to update</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>True if the product was updated, false if not found</returns>
-        Task<bool> UpdateAsync(Product product, CancellationToken cancellationToken = default);
+        /// <returns>The product updated, or null if not found</returns>
+        Task<Product?> UpdateAsync(Product product, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a product from the repository
