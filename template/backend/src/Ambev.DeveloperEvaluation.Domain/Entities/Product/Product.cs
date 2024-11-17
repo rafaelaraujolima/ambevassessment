@@ -52,5 +52,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Product
         /// <list type="bullet"><see langword="false"></see> : the product is not active</list>
         /// </remarks>
         public bool Status { get; set; }
+
+        /// <summary>
+        /// Gets the date of creation of the product.
+        /// </summary>
+        /// <returns>The date that it was created.</returns>
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets the date of the last update of the product.
+        /// </summary>
+        /// <returns>The date that it was last updated.</returns>
+        public DateTime LastUpdatedAt { get; set; }
     }
 }

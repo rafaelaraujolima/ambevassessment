@@ -65,6 +65,5 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// <list type="bullet"><see langword="false"></see> : the sale is not cancelled</list>
         /// </remarks>
         public bool IsCancelled { get; set; }
-        public ICollection<SaleItem> Items { get; set; } = new List<SaleItem>();
     }
 }
