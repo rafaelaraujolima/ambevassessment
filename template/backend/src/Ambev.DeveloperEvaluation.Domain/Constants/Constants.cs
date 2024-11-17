@@ -12,5 +12,10 @@
         /// It's considering the pattern ABV_yyyyMMddHHmmss_SUFFIX:D5
         /// </summary>
         public const int SaleNumberMaxLength = 24;
+
+        /// <summary>
+        /// Gets the maximum quantity per item on a sale.
+        /// </summary>
+        public const int MaxQuantityPerItem = 20;
     }
 }

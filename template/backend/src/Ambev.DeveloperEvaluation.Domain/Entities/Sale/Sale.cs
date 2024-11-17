@@ -1,4 +1,6 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Common;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
 {
@@ -12,7 +14,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
 
         /// <summary>
         /// Gets the number of the sale.
-        /// Must be a valid sale number following the pattern ABV_yyyyMMddHHmmss_SUFFIX:D5.
+        /// Must be a valid sale number following the pattern ABV_yyyyMMddHHmmss_D5.
         /// </summary>
         public string SaleNumber { get; set; } = string.Empty;
 
@@ -61,6 +63,34 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         public Sale()
         {
             SaleDate = DateTime.UtcNow;
+        }
+
+        /// <summary>
+        /// Performs validation of the user entity using the UserValidator rules.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="ValidationResultDetail"/> containing:
+        /// - IsValid: Indicates whether all validation rules passed
+        /// - Errors: Collection of validation errors if any rules failed
+        /// </returns>
+        /// <remarks>
+        /// <listheader>The validation includes checking:</listheader>
+        /// <list type="bullet">Username format and length</list>
+        /// <list type="bullet">Email format</list>
+        /// <list type="bullet">Phone number format</list>
+        /// <list type="bullet">Password complexity requirements</list>
+        /// <list type="bullet">Role validity</list>
+        /// 
+        /// </remarks>
+        public ValidationResultDetail Validate()
+        {
+            var validator = new SaleValidator();
+            var result = validator.Validate(this);
+            return new ValidationResultDetail
+            {
+                IsValid = result.IsValid,
+                Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+            };
         }
     }
 }
