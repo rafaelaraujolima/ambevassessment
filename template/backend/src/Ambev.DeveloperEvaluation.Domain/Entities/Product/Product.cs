@@ -18,34 +18,29 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Product
         /// Gets the product name.
         /// Must not be null or empty or white space and should have more than 3 characters.
         /// </summary>
-        /// <returns>The name.</returns>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the product price.
         /// Should be greater than 0.0.
         /// </summary>
-        /// <returns>The price.</returns>
         public decimal Price { get; set; }
 
         /// <summary>
         /// Gets the product description.
         /// Must not be null or empty or white space.
         /// </summary>
-        /// <returns>The description.</returns>
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the product stock.
         /// Must be greather than or equals to 0.
         /// </summary>
-        /// <returns>The stock.</returns>
         public int Stock { get; set; }
 
         /// <summary>
         /// Gets the product status.
         /// </summary>
-        /// <returns>The status.</returns>
         /// <remarks>
         /// <listheader>Returns</listheader>
         /// <list type="bullet"><see langword="true"></see> : the product is active</list>
@@ -54,15 +49,21 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Product
         public bool Status { get; set; }
 
         /// <summary>
-        /// Gets the date of creation of the product.
+        /// Gets the date and time when the product was created.
         /// </summary>
-        /// <returns>The date that it was created.</returns>
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets the date of the last update of the product.
+        /// Gets the date and time of the last update to the product's information.
         /// </summary>
-        /// <returns>The date that it was last updated.</returns>
         public DateTime LastUpdatedAt { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the Product class.
+        /// </summary>
+        public Product()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 }

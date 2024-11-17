@@ -18,34 +18,29 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// Gets the sale id that this sale item belongs.
         /// Must not be null or empty or white space.
         /// </summary>
-        /// <returns>The sale id.</returns>
-        public string SaleId { get; set; }
+        public string SaleId { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the product id that this sale item represents.
         /// Must not be null or empty or white space.
         /// </summary>
-        /// <returns>The product id.</returns>
-        public string ProductId { get; set; }
+        public string ProductId { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the product name that this sale item represents.
         /// Must not be null or empty or white space.
         /// </summary>
-        /// <returns>The product name.</returns>
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = string.Empty; 
 
         /// <summary>
         /// Gets the price of one unit of the product that this sale item represents.
         /// Must be greater than 0.0.
         /// </summary>
-        /// <returns>The unit price.</returns>
         public decimal UnitPrice { get; set; }
 
         /// <summary>
         /// Gets the quantity that this sale item has for the product.
         /// </summary>
-        /// <returns>The quantity.</returns>
         /// <remarks>
         /// <listheader>Rules:</listheader>
         /// <list type="bullet">Must be greather than 0.</list>
@@ -56,9 +51,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// <summary>
         /// Gets the discount that this sale item has.
         /// </summary>
-        /// <returns>The discount.</returns>
         /// <remarks>
-        /// <listheader>Rules</listheader>
+        /// <listheader>Rules:</listheader>
         /// <list type="bullet">4+ items: 10% discount</list>
         /// <list type="bullet">10-20 items: 20% discount</list>
         /// <list type="bullet">3- items: no discount allowed</list>
@@ -69,14 +63,12 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// Gets the total amount calculated of the sale item.
         /// It's calculated by <see cref="UnitPrice"/> * <see cref="Quantity"/> * <see cref="Discount"/>
         /// </summary>
-        /// <returns>The total amount.</returns>
         public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// Gets the status of the sale item.
         /// Indicates whether the item is cancelled on the sale or not.
         /// </summary>
-        /// <returns>The status.</returns>
         /// <remarks>
         /// <listheader>Returns</listheader>
         /// <list type="bullet"><see langword="true"></see> : the item is cancelled</list>
