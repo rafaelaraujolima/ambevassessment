@@ -1,11 +1,26 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities.Sale;
+﻿using Ambev.DeveloperEvaluation.Domain.Constants;
 using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Domain.Validation
+namespace Ambev.DeveloperEvaluation.WebApi.Features.SaleItems.CreateSaleItem
 {
-    public class SaleItemValidator : AbstractValidator<SaleItem>
+    /// <summary>
+    /// Validator for CreateSaleItemRequest that defines validation rules for sale item creation.
+    /// </summary>
+    public class CreateSaleItemRequestValidator : AbstractValidator<CreateSaleItemRequest>
     {
-        public SaleItemValidator()
+        /// <summary>
+        /// Initializes a new instance of the CreateSaleItemRequestValidator with defined validation rules.
+        /// </summary>
+        /// <remarks>
+        /// <listheader>Validation rules include:</listheader>
+        /// <list type="bullet">SaleId: Required, must not be empty</list>
+        /// <list type="bullet">ProductName: Required, must not be empty</list>
+        /// <list type="bullet">UnitPrice: Required, must be greater than 0.0.</list>
+        /// <list type="bullet">Quantity: Required, must be greater than 0 and less than or equals to <see cref="Constants.MaxQuantityPerItem"/>.</list>
+        /// <list type="bullet">Discount: Required, must be from 0.0 to 1.0./>.</list>
+        /// <list type="bullet">TotalAmount: Required, must be greater than or equals to 0.0./>.</list>
+        /// </remarks>
+        public CreateSaleItemRequestValidator()
         {
             RuleFor(saleItem => saleItem.SaleId)
                 .NotEmpty()
@@ -22,9 +37,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
             RuleFor(saleItem => saleItem.Quantity)
                 .GreaterThan(0)
                 .WithMessage("Quantity must be greater than 0.")
-                .LessThanOrEqualTo(Constants.Constants.MaxQuantityPerItem)
+                .LessThanOrEqualTo(Constants.MaxQuantityPerItem)
                 .WithMessage("Quantity must be less than or equals to "
-                            + Constants.Constants.MaxQuantityPerItem);
+                            + Constants.MaxQuantityPerItem);
 
             RuleFor(saleItem => saleItem.Discount)
                 .InclusiveBetween(0m, 1m)

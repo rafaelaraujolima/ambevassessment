@@ -1,16 +1,26 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities.Sale;
+﻿using Ambev.DeveloperEvaluation.Domain.Constants;
 using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Domain.Validation
+namespace Ambev.DeveloperEvaluation.Application.SaleItems.UpdateSaleItem
 {
-    public class SaleItemValidator : AbstractValidator<SaleItem>
+    /// <summary>
+    /// Validator for UpdateSaleItemCommand that defines validation rules for sale update command.
+    /// </summary>
+    public class UpdateSaleItemCommandValidator : AbstractValidator<UpdateSaleItemCommand>
     {
-        public SaleItemValidator()
+        /// <summary>
+        /// Initializes a new instance of the UpdateSaleItemCommandValidator with defined validation rules.
+        /// </summary>
+        /// <remarks>
+        /// <listheader>Validation rules include:</listheader>
+        /// <list type="bullet">ProductName: Required, must not be empty</list>
+        /// <list type="bullet">UnitPrice: Required, must be greater than 0.0</list>
+        /// <list type="bullet">Quantity: Required, must be greater than 0</list>
+        /// <list type="bullet">Discount: Required, must be between 0.0 and 1.0 and follow rules for quantity of items</list>
+        /// <list type="bullet">TotalAmount: Required, must be greater than or equals to 0.0</list>
+        /// </remarks>
+        public UpdateSaleItemCommandValidator()
         {
-            RuleFor(saleItem => saleItem.SaleId)
-                .NotEmpty()
-                .WithMessage("Sale id must not be empty.");
-
             RuleFor(saleItem => saleItem.ProductName)
                 .NotEmpty()
                 .WithMessage("Product name must not be empty.");
@@ -22,9 +32,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
             RuleFor(saleItem => saleItem.Quantity)
                 .GreaterThan(0)
                 .WithMessage("Quantity must be greater than 0.")
-                .LessThanOrEqualTo(Constants.Constants.MaxQuantityPerItem)
+                .LessThanOrEqualTo(Constants.MaxQuantityPerItem)
                 .WithMessage("Quantity must be less than or equals to "
-                            + Constants.Constants.MaxQuantityPerItem);
+                            + Constants.MaxQuantityPerItem);
 
             RuleFor(saleItem => saleItem.Discount)
                 .InclusiveBetween(0m, 1m)

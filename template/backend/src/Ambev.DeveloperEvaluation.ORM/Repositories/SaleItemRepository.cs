@@ -1,11 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities.Sale;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories
 {
@@ -67,14 +62,15 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <param name="saleItem">The sale item to update</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the sale item was updated, false if not found</returns>
-        public async Task<bool> UpdateAsync(SaleItem saleItem, CancellationToken cancellationToken = default)
+        public async Task<SaleItem?> UpdateAsync(SaleItem saleItem, CancellationToken cancellationToken = default)
         {
             var saleItemToUpdate = await GetByIdAsync(saleItem.Id, cancellationToken);
             if (saleItemToUpdate == null)
             {
-                return false;
+                return null;
             }
 
+            saleItemToUpdate.ProductName = saleItem.ProductName;
             saleItemToUpdate.Quantity = saleItem.Quantity;
             saleItemToUpdate.Discount = saleItem.Discount;
             saleItemToUpdate.TotalAmount = saleItem.TotalAmount;
@@ -82,7 +78,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
             _context.SaleItems.Update(saleItemToUpdate);
             await _context.SaveChangesAsync(cancellationToken);
-            return true;
+            return saleItemToUpdate;
         }
 
         /// <summary>

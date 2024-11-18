@@ -38,5 +38,13 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the product was deleted, false if not found</returns>
         Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retireves a product stock from the database
+        /// </summary>
+        /// <param name="id">The unique identifier of the product to retrieve</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The value of the stock, or 0 if not found</returns>
+        Task<int> GetStockAsync(Guid id, CancellationToken cancellationToken = default);
     }
 }

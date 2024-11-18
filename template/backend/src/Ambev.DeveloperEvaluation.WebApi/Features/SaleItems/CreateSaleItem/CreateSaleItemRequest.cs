@@ -1,21 +1,10 @@
-﻿using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Common;
-using Ambev.DeveloperEvaluation.Domain.Validation;
-
-namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.SaleItems.CreateSaleItem
 {
     /// <summary>
-    /// Represents a sale item in the system with information about the sale item that belongs to a sale.
-    /// This entity follows domain-driven design principles and includes business rules validation.
+    /// Represents a request to create a new sale item in the system.
     /// </summary>
-    public class SaleItem : BaseEntity
+    public class CreateSaleItemRequest
     {
-        /// <summary>
-        /// Gets the unique identifier of the sale item.
-        /// </summary>
-        /// <returns>The saleitem's ID as <see cref="string"/>.</returns>
-        public string SaleItemId => Id.ToString();
-
         /// <summary>
         /// Gets the sale id that this sale item belongs.
         /// Must not be null or empty or white space.
@@ -32,7 +21,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// Gets the product name that this sale item represents.
         /// Must not be null or empty or white space.
         /// </summary>
-        public string ProductName { get; set; } = string.Empty; 
+        public string ProductName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the price of one unit of the product that this sale item represents.
@@ -77,34 +66,5 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// <list type="bullet"><see langword="false"></see> : the item is not cancelled</list>
         /// </remarks>
         public bool IsCancelled { get; set; } = false;
-
-        /// <summary>
-        /// Performs validation of the sale item entity using the SaleItemValidator rules.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="ValidationResultDetail"/> containing:
-        /// - IsValid: Indicates whether all validation rules passed
-        /// - Errors: Collection of validation errors if any rules failed
-        /// </returns>
-        /// <remarks>
-        /// <listheader>The validation includes checking:</listheader>
-        /// <list type="bullet">SaleId length</list>
-        /// <list type="bullet">ProductName length</list>
-        /// <list type="bullet">UnitPrice value</list>
-        /// <list type="bullet">Quantity value</list>
-        /// <list type="bullet">Discount validity</list>
-        /// <list type="bullet">TotalAmount value</list>
-        /// 
-        /// </remarks>
-        public ValidationResultDetail Validate()
-        {
-            var validator = new SaleItemValidator();
-            var result = validator.Validate(this);
-            return new ValidationResultDetail
-            {
-                IsValid = result.IsValid,
-                Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
-            };
-        }
     }
 }

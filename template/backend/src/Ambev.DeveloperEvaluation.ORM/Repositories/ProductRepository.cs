@@ -86,5 +86,20 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
+
+        /// <summary>
+        /// Retireves a product stock from the database
+        /// </summary>
+        /// <param name="id">The unique identifier of the product to retrieve</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The value of the stock, or 0 if not found</returns>
+        public async Task<int> GetStockAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var product = await GetByIdAsync(id, cancellationToken);
+            if (product == null)
+                return 0;
+
+            return product.Stock;
+        }
     }
 }

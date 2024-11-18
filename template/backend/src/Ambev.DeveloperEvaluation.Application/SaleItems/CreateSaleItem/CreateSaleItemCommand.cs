@@ -1,21 +1,24 @@
 ﻿using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Common;
-using Ambev.DeveloperEvaluation.Domain.Validation;
+using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
+namespace Ambev.DeveloperEvaluation.Application.SaleItems.CreateSaleItem
 {
     /// <summary>
-    /// Represents a sale item in the system with information about the sale item that belongs to a sale.
-    /// This entity follows domain-driven design principles and includes business rules validation.
+    /// Command for creating a new sale item.
     /// </summary>
-    public class SaleItem : BaseEntity
+    /// <remarks>
+    /// This command is used to capture the required data for creating a sale item, 
+    /// including sale id, product id, product name, unit price, quantity, discount, total amount and the status of cancelation. 
+    /// It implements <see cref="IRequest{TResponse}"/> to initiate the request 
+    /// that returns a <see cref="CreateSaleItemResult"/>.
+    /// 
+    /// The data provided in this command is validated using the 
+    /// <see cref="CreateSaleItemCommandValidator"/> which extends 
+    /// <see cref="AbstractValidator{T}"/> to ensure that the fields are correctly 
+    /// populated and follow the required rules.
+    /// </remarks>
+    public class CreateSaleItemCommand : IRequest<CreateSaleItemResult>
     {
-        /// <summary>
-        /// Gets the unique identifier of the sale item.
-        /// </summary>
-        /// <returns>The saleitem's ID as <see cref="string"/>.</returns>
-        public string SaleItemId => Id.ToString();
-
         /// <summary>
         /// Gets the sale id that this sale item belongs.
         /// Must not be null or empty or white space.
@@ -32,7 +35,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// Gets the product name that this sale item represents.
         /// Must not be null or empty or white space.
         /// </summary>
-        public string ProductName { get; set; } = string.Empty; 
+        public string ProductName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the price of one unit of the product that this sale item represents.
@@ -78,27 +81,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         /// </remarks>
         public bool IsCancelled { get; set; } = false;
 
-        /// <summary>
-        /// Performs validation of the sale item entity using the SaleItemValidator rules.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="ValidationResultDetail"/> containing:
-        /// - IsValid: Indicates whether all validation rules passed
-        /// - Errors: Collection of validation errors if any rules failed
-        /// </returns>
-        /// <remarks>
-        /// <listheader>The validation includes checking:</listheader>
-        /// <list type="bullet">SaleId length</list>
-        /// <list type="bullet">ProductName length</list>
-        /// <list type="bullet">UnitPrice value</list>
-        /// <list type="bullet">Quantity value</list>
-        /// <list type="bullet">Discount validity</list>
-        /// <list type="bullet">TotalAmount value</list>
-        /// 
-        /// </remarks>
         public ValidationResultDetail Validate()
         {
-            var validator = new SaleItemValidator();
+            var validator = new CreateSaleItemCommandValidator();
             var result = validator.Validate(this);
             return new ValidationResultDetail
             {

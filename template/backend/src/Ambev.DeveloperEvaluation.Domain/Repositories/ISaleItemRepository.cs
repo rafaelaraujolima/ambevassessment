@@ -46,7 +46,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// <param name="saleItem">The sale item to update</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the sale item was updated, false if not found</returns>
-        Task<bool> UpdateAsync(SaleItem saleItem, CancellationToken cancellationToken = default);
+        Task<SaleItem?> UpdateAsync(SaleItem saleItem, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a sale item from the repository

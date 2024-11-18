@@ -90,6 +90,13 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             if (sale == null)
                 return false;
 
+            // remove items of the sale
+            var saleItems = await _context.SaleItems.Where(si => si.SaleId.Equals(sale.Id)).ToListAsync();
+            if (saleItems.Any())
+            {
+                _context.SaleItems.RemoveRange(saleItems);
+            }
+
             _context.Sales.Remove(sale);
             await _context.SaveChangesAsync(cancellationToken);
             return true;
