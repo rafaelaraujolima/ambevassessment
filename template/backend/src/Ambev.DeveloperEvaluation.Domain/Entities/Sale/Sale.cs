@@ -1,6 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Domain.Validation;
+using System.Text;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
 {
@@ -63,6 +64,23 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities.Sale
         public Sale()
         {
             SaleDate = DateTime.UtcNow;
+            
+            StringBuilder builder = new StringBuilder();
+            builder.Append("ABV_");
+            builder.Append(SaleDate.ToString("yyyyMMddHHmmss"));
+            builder.Append("_");
+
+            // Just to generate a random.
+            // It should be done sequencial.
+            var random = new Random();
+            int randomNumber = random.Next(0, 100000);
+            string formattedRandomNumber = randomNumber.ToString("D5");
+
+            builder.Append(formattedRandomNumber);
+
+            SaleNumber = builder.ToString();
+
+            IsCancelled = false;
         }
 
         /// <summary>

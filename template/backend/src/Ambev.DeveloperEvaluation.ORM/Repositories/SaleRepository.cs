@@ -62,12 +62,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <param name="sale">The sale to update</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the sale was updated, false if not found</returns>
-        public async Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+        public async Task<Sale?> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
         {
             var saleToUpdate = await GetByIdAsync(sale.Id, cancellationToken);
             if (saleToUpdate == null)
             {
-                return false;
+                return null;
             }
 
             saleToUpdate.TotalAmount = sale.TotalAmount;
@@ -75,7 +75,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
             _context.Sales.Update(saleToUpdate);
             await _context.SaveChangesAsync(cancellationToken);
-            return true;
+            return saleToUpdate;
         }
 
         /// <summary>
