@@ -4,6 +4,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using OneOf.Types;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
 {
@@ -44,6 +45,12 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
             var product = _mapper.Map<Product>(command);
 
             var updatedProduct = await _productRepository.UpdateAsync(product, cancellationToken);
+
+            if (updatedProduct == null)
+            {
+                throw new KeyNotFoundException($"product with ID {command.Id} not found");
+            }
+
             var result = _mapper.Map<UpdateProductResult>(updatedProduct);
             return result;
         }

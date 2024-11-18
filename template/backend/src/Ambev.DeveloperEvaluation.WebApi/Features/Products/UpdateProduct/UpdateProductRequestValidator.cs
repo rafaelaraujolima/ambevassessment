@@ -13,6 +13,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct
         /// </summary>
         /// <remarks>
         /// <listheader>Validation rules include:</listheader>
+        /// <list type="bullet">Id: Required, GUID of the product</list>
         /// <list type="bullet">Name: Required, must be between 3 and <see cref="Constants.ProductNameMaxLength"/></list>
         /// <list type="bullet">Price: Required, must be greater than 0.0</list>
         /// <list type="bullet">Description: Required, must be between 3 and 200</list>
@@ -20,6 +21,10 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct
         /// </remarks>
         public UpdateProductRequestValidator()
         {
+            RuleFor(product => product.Id)
+                .NotEmpty()
+                .WithMessage("Product ID is required");
+            
             RuleFor(product => product.Name)
                 .NotEmpty()
                 .Length(3, Constants.ProductNameMaxLength);

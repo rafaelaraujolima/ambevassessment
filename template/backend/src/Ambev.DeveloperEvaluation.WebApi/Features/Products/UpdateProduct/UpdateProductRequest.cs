@@ -6,6 +6,11 @@
     public class UpdateProductRequest
     {
         /// <summary>
+        /// The unique identifier of the product to delete
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the product name. Must not be empty.
         /// </summary>
         public string Name { get; set; } = string.Empty;

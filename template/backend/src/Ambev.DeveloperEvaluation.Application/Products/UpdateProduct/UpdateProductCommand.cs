@@ -20,6 +20,11 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
     public class UpdateProductCommand : IRequest<UpdateProductResult>
     {
         /// <summary>
+        /// The unique identifier of the product to update
+        /// </summary>
+        public Guid Id { get; }
+
+        /// <summary>
         /// Gets or sets the product name.
         /// </summary>
         public string Name { get; set; } = string.Empty;
@@ -43,6 +48,15 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
         /// Gets or sets the product status.
         /// </summary>
         public bool Status { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of UpdateProductCommand
+        /// </summary>
+        /// <param name="id">The ID of the product to update</param>
+        public UpdateProductCommand(Guid id)
+        {
+            Id = id;
+        }
 
         public ValidationResultDetail Validate()
         {

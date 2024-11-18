@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
         /// <summary>
         /// Initializes the mappings for UpdateProduct operation
         /// </summary>
-        protected UpdateProductProfile()
+        public UpdateProductProfile()
         {
             CreateMap<UpdateProductCommand, Product>();
             CreateMap<Product, UpdateProductResult>();

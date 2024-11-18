@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct
         /// <summary>
         /// Initializes the mappings for UpdateProduct feature
         /// </summary>
-        protected UpdateProductProfile()
+        public UpdateProductProfile()
         {
             CreateMap<UpdateProductRequest, UpdateProductCommand>();
             CreateMap<UpdateProductResult, UpdateProductResponse>();

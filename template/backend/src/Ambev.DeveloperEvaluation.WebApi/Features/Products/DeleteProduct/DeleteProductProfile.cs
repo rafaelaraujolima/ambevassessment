@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.DeleteProduct
         /// <summary>
         /// Initializes the mappings for DeleteProduct feature
         /// </summary>
-        protected DeleteProductProfile()
+        public DeleteProductProfile()
         {
             CreateMap<Guid, DeleteProductCommand>()
                 .ConstructUsing(id => new DeleteProductCommand(id));
