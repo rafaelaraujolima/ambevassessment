@@ -84,3 +84,12 @@ This section includes links to the detailed documentation for the different API 
 This section describes the overall structure and organization of the project files and directories. 
 
 See [Project Structure](/.doc/project-structure.md)
+
+# How to execute
+
+1. Install Docker on your system
+2. Go to the directory of the application, `template/backend`
+3. Execute docker with the command `docker-compose -f docker-compose.override.yml -f docker-compose.yml up --build`
+4. Check which port docker mapped from your host to de container of the application `ambev_developer_evaluation_database`. You will need this to configure the port in the DefaultConnectionLocal on your `appsettings.json`.
+5. Go to the `src` directory and execute the command `dotnet ef database update --project Ambev.DeveloperEvaluation.ORM --startup-project .\Ambev.DeveloperEvaluation.WebApi\`. This will create and configure the database.
+6. Now you can start the application in the Visual Studio.
