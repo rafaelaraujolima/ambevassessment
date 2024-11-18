@@ -1,9 +1,9 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct
 {
     /// <summary>
-    /// Response model for GetProduct operation
+    /// API response model for UpdateProduct operation
     /// </summary>
-    public class GetProductResult
+    public class UpdateProductResponse
     {
         /// <summary>
         /// The unique identifier of the product

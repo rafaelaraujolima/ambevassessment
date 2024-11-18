@@ -1,37 +1,32 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct
 {
     /// <summary>
-    /// Response model for GetProduct operation
+    /// Represents a request to create a new product in the system.
     /// </summary>
-    public class GetProductResult
+    public class CreateProductRequest
     {
         /// <summary>
-        /// The unique identifier of the product
-        /// </summary>
-        public Guid Id { get; set; }
-
-        /// <summary>
-        /// The product's name
+        /// Gets or sets the product name. Must not be empty.
         /// </summary>
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
-        /// The product's price
+        /// Gets or sets the product price.
         /// </summary>
         public decimal Price { get; set; }
 
         /// <summary>
-        /// The product's description
+        /// Gets or sets the product description.
         /// </summary>
         public string Description { get; set; } = string.Empty;
 
         /// <summary>
-        /// The product's stock
+        /// Gets or sets the product stock.
         /// </summary>
         public int Stock { get; set; }
 
         /// <summary>
-        /// The product's status
+        /// Gets or sets the product status.
         /// </summary>
         public bool Status { get; set; }
     }
